@@ -18,14 +18,14 @@ Articulo.init({
         allowNull: false
     },
     precio_base: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT(11, 2),
         allowNull: false,
         validate: {
             min: 0,
         }
     },
     precio_coste: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT(11, 2),
         allowNull: false,
         validate: {
             min: 0,

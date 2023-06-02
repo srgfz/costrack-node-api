@@ -21,7 +21,7 @@ PedidoLinea.init({
         }
     },
     precio_unidad: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT(11, 2),
         allowNull: false,
         validate: {
             min: 0,
