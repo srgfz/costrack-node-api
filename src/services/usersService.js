@@ -1,6 +1,7 @@
 //Importamos el modelo de componente:
 const User = require("../models/User")
-
+const Comercial = require("../models/Comercial")
+const Empresa = require("../models/Empresa")
 
 
 const sequalize = require("../db/db")
@@ -43,9 +44,10 @@ const getInfo = async (email) => {
 
 const createToken = (user) => {
     const payload = {
-        usuarioId: user.id,//id
+        id: user.id,//id
+        rol: user.rol,//rol
         createdAt: moment().unix(),//Fecha de creación
-        expiredAt: moment().add(6, "hours").unix()//Duración
+        expiredAt: moment().add(8, "hours").unix()//Duración
     }
     return jwt.encode(payload, "Frase para probar .env")
     //Este token lo recibiré en cliente y lo guardaré (en localStorage)
@@ -74,14 +76,30 @@ const login = async (body) => {
 
 const post = async (newItem) => {
     try {
-        return await User.create({
-            nombre: newItem.nombre,
-            apellidos: newItem.apellidos,
-            curso: newItem.curso,
-            centro: newItem.centro,
+        const user = await User.create({
             email: newItem.email,
+            rol: newItem.rol,
             password: bcryptjs.hashSync(newItem.password, 10),
         });
+        if (newItem.cif) {
+            //Si es empresa
+            return await Empresa.create({
+                cif: newItem.cif,
+                nombre: newItem.nombre,
+                direccion: newItem.direccion,
+                userId: user.id
+            });
+        } else {
+            //Si es comercial
+            return await Comercial.create({
+                dni: newItem.dni,
+                nombre: newItem.nombre,
+                apellidos: newItem.apellidos,
+                imagen: newItem.imagen,
+                userId: user.id,
+                empresaId: newItem.empresaId
+            });
+        }
     }
     catch (error) {
         return error

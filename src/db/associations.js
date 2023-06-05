@@ -29,6 +29,9 @@ PedidoLinea.belongsTo(Articulo)
 Proveedor.hasMany(Articulo)
 Articulo.belongsTo(Proveedor)
 
+Empresa.hasMany(Comercial)
+Comercial.belongsTo(Empresa)
+
 
 Empresa.belongsTo(User)
 

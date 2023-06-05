@@ -25,11 +25,7 @@ Comercial.init({
     apellidos: {
         type: DataTypes.STRING(150),
         allowNull: false
-    },
-    imagen: {
-        type: DataTypes.STRING,
-        //allowNull: false
-    },
+    }
 }, {
     sequelize,
     modelName: "comercial",
