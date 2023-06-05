@@ -19,7 +19,7 @@ const login = async (req, res) => {
 const postEmpresa = async (req, res) => {
     const resp = await usersService.post(req.body)
     if (resp.name === "SequelizeUniqueConstraintError") {
-        res.status(200).json({ Error: "El email introducido ya está vinculado a una cuenta; si está registrado inicie sesión" })
+        res.status(200).json({ error: "Los datos introducidos ya están vinculados a una cuenta, por favor, si desea entrar en la web inicie sesión con su cuenta" })
     } else {
         res.status(200).json(resp)
     }
@@ -28,7 +28,7 @@ const postEmpresa = async (req, res) => {
 const postComercial = async (req, res) => {
     const resp = await usersService.post(req.body)
     if (resp.name === "SequelizeUniqueConstraintError") {
-        res.status(200).json({ Error: "El email introducido ya está vinculado a una cuenta; si está registrado inicie sesión" })
+        res.status(200).json({ error: "Los datos introducidos ya están vinculados a una cuenta, por favor, si desea entrar en la web inicie sesión con su cuenta" })
     } else {
         res.status(200).json(resp)
     }

@@ -9,6 +9,13 @@ const getOne = async (req, res) => {
     res.json(await comercialesService.getOne(req.params.id))
 }
 
+const getBills = async (req, res) => {
+    res.json(await comercialesService.getBills(req.params.id))
+}
+
+const getOrders = async (req, res) => {
+    res.json(await comercialesService.getOrders(req.params.id))
+}
 
 const post = async (req, res) => {
     await comercialesService.post(req.body)
@@ -33,6 +40,8 @@ const remove = async (req, res) => {
 module.exports = {
     getAll,
     getOne,
+    getBills,
+    getOrders,
     post,
     remove,
     put,

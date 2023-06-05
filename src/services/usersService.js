@@ -43,11 +43,22 @@ const getInfo = async (email) => {
 
 
 const createToken = (user) => {
+    if (user.rol === 1) {
+        const payload = {
+            id: user.id,//id
+            rol: user.rol,//rol
+            createdAt: moment().unix(),//Fecha de creación
+            expiredAt: moment().add(8, "hours").unix(),//Duración
+        }
+        return jwt.encode(payload, "Frase para probar .env")
+        //Este token lo recibiré en cliente y lo guardaré (en localStorage)
+    }
     const payload = {
         id: user.id,//id
-        rol: user.rol,//rol
+        rol: user.user.rol,//rol
         createdAt: moment().unix(),//Fecha de creación
-        expiredAt: moment().add(8, "hours").unix()//Duración
+        expiredAt: moment().add(8, "hours").unix(),//Duración
+        idEmpresa: user.empresaId
     }
     return jwt.encode(payload, "Frase para probar .env")
     //Este token lo recibiré en cliente y lo guardaré (en localStorage)
@@ -61,11 +72,24 @@ const login = async (body) => {
     const user = await User.findOne({
         where: {
             email: body.email,
-        },
+        }
     });
     if (user) {
         if (bcryptjs.compareSync(body.password, user.password)) {//Login correcto
-            return { token: createToken(user) }//Si el login es correcto creamos y devolvemos el token para ese usuario
+            if (body.rol === 0) {
+                const comercial = await Comercial.findOne({
+                    where: {
+                        userId: user.id,
+                    },
+                    include: {
+                        model: User,
+                        attributes: ["rol"]
+                    }
+                });
+                return { token: createToken(comercial) }//Si el login es correcto creamos y devolvemos el token para ese usuario
+            } else if (body.rol === 1) {
+                return { token: createToken(user) }//Si el login es correcto creamos y devolvemos el token para ese usuario
+            }
         } else {//Contraseña incorrecta
             return { error: "Login fallido 2" };
         }
@@ -83,7 +107,7 @@ const post = async (newItem) => {
         });
         if (newItem.cif) {
             //Si es empresa
-            return await Empresa.create({
+            await Empresa.create({
                 cif: newItem.cif,
                 nombre: newItem.nombre,
                 direccion: newItem.direccion,
@@ -91,11 +115,10 @@ const post = async (newItem) => {
             });
         } else {
             //Si es comercial
-            return await Comercial.create({
+            await Comercial.create({
                 dni: newItem.dni,
                 nombre: newItem.nombre,
                 apellidos: newItem.apellidos,
-                imagen: newItem.imagen,
                 userId: user.id,
                 empresaId: newItem.empresaId
             });
@@ -104,6 +127,8 @@ const post = async (newItem) => {
     catch (error) {
         return error
     }
+    return await login(newItem)
+
 }
 
 const put = async (newItem, id) => {

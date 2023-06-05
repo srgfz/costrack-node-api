@@ -1,8 +1,15 @@
 const empresasService = require("../services/empresasService")
 
 const getAll = async (req, res) => {
-
     res.json(await empresasService.getAll())
+}
+
+const getClients = async (req, res) => {
+    res.json(await empresasService.getClients(req.params.id))
+}
+
+const getProducts = async (req, res) => {
+    res.json(await empresasService.getProducts(req.params.id))
 }
 
 const getOne = async (req, res) => {
@@ -32,6 +39,8 @@ const remove = async (req, res) => {
 
 module.exports = {
     getAll,
+    getClients,
+    getProducts,
     getOne,
     post,
     remove,

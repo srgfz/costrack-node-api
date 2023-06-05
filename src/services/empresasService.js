@@ -1,5 +1,9 @@
 //Importamos el modelo de componente:
 const Empresa = require("../models/Empresa")
+const Cliente = require("../models/Cliente")
+const Articulo = require("../models/Articulo")
+
+
 
 
 const getAll = async () => {
@@ -7,6 +11,38 @@ const getAll = async () => {
         const all = await Empresa.findAll(
         )
         return all
+    }
+    catch (error) {
+        return error
+    }
+}
+
+const getClients = async (id) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Cliente
+            }
+        })
+    }
+    catch (error) {
+        return error
+    }
+}
+
+const getProducts = async (id) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Articulo
+            }
+        })
     }
     catch (error) {
         return error
@@ -49,6 +85,8 @@ const remove = async (id) => {
 
 module.exports = {
     getAll,
+    getClients,
+    getProducts,
     getOne,
     post,
     put,

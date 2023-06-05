@@ -32,6 +32,12 @@ Articulo.belongsTo(Proveedor)
 Empresa.hasMany(Comercial)
 Comercial.belongsTo(Empresa)
 
+Empresa.hasMany(Articulo)
+Articulo.belongsTo(Empresa)
+
+Empresa.hasMany(Cliente)
+Cliente.belongsTo(Empresa)
+
 
 Empresa.belongsTo(User)
 

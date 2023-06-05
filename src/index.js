@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
-    // 👇️ specify CORS headers to send 👇️
+    // specify CORS headers to send 
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Methods',
@@ -37,6 +37,6 @@ app.listen(PORT, () => {
     console.log(`Servidor eschando en http://localhost:${PORT}`);
     // conexión con mysql
     sequelize
-        .sync({ force: true })
+        .sync({ force: false })
         .then(() => console.log("tablas sincronizadas"));
 });

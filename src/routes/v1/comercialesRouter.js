@@ -6,6 +6,8 @@ const comercialesController = require("../../controllers/comercialesController")
 //Acciones de heroes llamando a los métodos de su controlador:
 comercialesRouter.get("/", comercialesController.getAll)
 comercialesRouter.get("/:id", comercialesController.getOne)
+comercialesRouter.get("/gastos/:id", comercialesController.getBills)
+comercialesRouter.get("/pedidos/:id", comercialesController.getOrders)
 comercialesRouter.post("/", comercialesController.post)
 comercialesRouter.put("/:id", comercialesController.put)
 comercialesRouter.patch("/:id", comercialesController.patch)

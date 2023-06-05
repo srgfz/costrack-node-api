@@ -23,7 +23,7 @@ const checkToken = (req, res, next) => {
         if (playload.expiredAt < moment().unix()) {//Si el token ha expirado
             return res.json({ error: "Error 3*" })
         }
-        if (playload.rol !== 1 || playload.rol !== 0) { // Verificar el rol
+        if (playload.rol !== 1 && playload.rol !== 0) { // Verificar el rol
             return res.json({ error: "Error 4*" });
         }
     } catch (error) {//Si el token no coincide
