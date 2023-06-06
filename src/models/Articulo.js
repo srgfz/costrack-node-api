@@ -13,7 +13,7 @@ Articulo.init({
         primaryKey: true,
         autoIncrement: true
     },
-    nombre_emisor: {
+    nombre: {
         type: DataTypes.STRING(150),
         allowNull: false
     },

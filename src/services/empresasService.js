@@ -7,10 +7,7 @@ const Gasto = require("../models/Gasto")
 const Pedido = require("../models/Pedido")
 const PedidoLinea = require("../models/PedidoLinea")
 
-
-
-
-
+const { Op } = require("sequelize");
 
 const getAll = async () => {
     try {
@@ -30,14 +27,37 @@ const getClients = async (id) => {
                 id: id,
             },
             include: {
-                model: Cliente
-            }
-        })
+                model: Cliente,
+                order: [["nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
+            },
+        });
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
+};
+
+const getClientsByName = async (id, q) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Cliente,
+                where: {
+                    nombre: {
+                        [Op.like]: `%${q.toLowerCase()}%`
+                    }
+                },
+                order: [["nombre", "ASC"]],
+                limit: 5, // Limitar la cantidad de clientes a 5
+            },
+        });
+    } catch (error) {
+        return error;
     }
-}
+};
+
 
 const getProducts = async (id) => {
     try {
@@ -46,14 +66,36 @@ const getProducts = async (id) => {
                 id: id,
             },
             include: {
-                model: Articulo
-            }
-        })
+                model: Articulo,
+                order: [["nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
+            },
+        });
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
+};
+
+const getProductsByName = async (id, q) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Articulo,
+                where: {
+                    nombre: {
+                        [Op.like]: `%${q.toLowerCase()}%`
+                    }
+                },
+                order: [["nombre", "ASC"]],
+                limit: 5, // Limitar la cantidad de productos a 5
+            },
+        });
+    } catch (error) {
+        return error;
     }
-}
+};
 
 const getCommercial = async (id) => {
     try {
@@ -64,21 +106,80 @@ const getCommercial = async (id) => {
             include: [
                 {
                     model: Comercial,
+                    order: [["nombre", "ASC"], ["apellidos", "ASC"]], // Ordenar por nombre y apellidos en orden ascendente
                     include: [
                         Gasto,
                         {
                             model: Pedido,
-                            include: PedidoLinea
-                        }
-                    ]
-                }
-            ]
+                            include: PedidoLinea,
+                        },
+                    ],
+                },
+            ],
         });
     } catch (error) {
         return error;
     }
 };
 
+const getCommercialByDates = async (id, date1, date2) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: [
+                {
+                    model: Comercial,
+                    order: [["nombre", "ASC"], ["apellidos", "ASC"]],
+                    include: [
+                        {
+                            model: Gasto,
+                            where: {
+                                fecha_gasto: {
+                                    [Op.between]: [date1, date2]
+                                }
+                            },
+                        },
+                        {
+                            model: Pedido,
+                            include: PedidoLinea,
+                            where: {
+                                createdAt: {
+                                    [Op.between]: [date1, date2]
+                                }
+                            }
+                        },
+                    ],
+                },
+            ],
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+const getComercialByName = async (id, q) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Comercial,
+                where: {
+                    nombre: {
+                        [Op.like]: `%${q.toLowerCase()}%`
+                    }
+                },
+                order: [["nombre", "ASC"]],
+                limit: 5, // Limitar la cantidad de productos a 5
+            },
+        });
+    } catch (error) {
+        return error;
+    }
+};
 
 const getOne = async (id) => {
     try {
@@ -117,8 +218,12 @@ const remove = async (id) => {
 module.exports = {
     getAll,
     getClients,
+    getClientsByName,
     getProducts,
+    getProductsByName,
     getCommercial,
+    getComercialByName,
+    getCommercialByDates,
     getOne,
     post,
     put,

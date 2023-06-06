@@ -38,14 +38,14 @@ const getBills = async (id) => {
                 id: id,
             },
             include: {
-                model: Gasto
+                model: Gasto,
+                order: [["fecha_gasto", "DESC"]] // Ordenar por la columna "fecha_gasto" en orden descendente
             },
-        })
+        });
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
-    }
-}
+};
 
 const getOrders = async (id) => {
     try {
@@ -58,16 +58,16 @@ const getOrders = async (id) => {
                 include: {
                     model: PedidoLinea,
                     include: {
-                        model: Articulo
-                    }
-                }
+                        model: Articulo,
+                    },
+                },
+                order: [["createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
             },
-        })
+        });
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
-    }
-}
+};
 
 const post = async (newItem) => {
     try {

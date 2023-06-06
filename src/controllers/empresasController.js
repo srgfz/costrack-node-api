@@ -8,18 +8,33 @@ const getClients = async (req, res) => {
     res.json(await empresasService.getClients(req.params.id))
 }
 
+const getClientsByName = async (req, res) => {
+    res.json(await empresasService.getClientsByName(req.params.id, req.query.q))
+}
+
 const getProducts = async (req, res) => {
     res.json(await empresasService.getProducts(req.params.id))
+}
+
+const getProductsByName = async (req, res) => {
+    res.json(await empresasService.getProductsByName(req.params.id, req.query.q))
 }
 
 const getCommercial = async (req, res) => {
     res.json(await empresasService.getCommercial(req.params.id))
 }
 
+const getComercialByName = async (req, res) => {
+    res.json(await empresasService.getComercialByName(req.params.id, req.query.q))
+}
+
+const getCommercialByDates = async (req, res) => {
+    res.json(await empresasService.getComercialByName(req.params.id, req.query.date1, req.query.date2))
+}
+
 const getOne = async (req, res) => {
     res.json(await empresasService.getOne(req.params.id))
 }
-
 
 const post = async (req, res) => {
     await empresasService.post(req.body)
@@ -44,8 +59,12 @@ const remove = async (req, res) => {
 module.exports = {
     getAll,
     getClients,
+    getClientsByName,
     getProducts,
+    getProductsByName,
     getCommercial,
+    getComercialByName,
+    getCommercialByDates,
     getOne,
     post,
     remove,

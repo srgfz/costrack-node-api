@@ -1,5 +1,6 @@
 //Importamos el modelo de componente:
 const Cliente = require("../models/Cliente")
+const { Op } = require("sequelize");
 
 
 const getAll = async () => {
@@ -26,6 +27,22 @@ const getOne = async (id) => {
     }
 }
 
+const getByName = async (searchInput) => {
+    try {
+        return await Cliente.findAll({
+            where: sequelize.where(
+                sequelize.fn("lower", sequelize.col("nombre")),
+                {
+                    [Op.iLike]: `%${searchInput.toLowerCase()}%`,
+                }
+            ),
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+
 const post = async (newItem) => {
     try {
         return await Cliente.create(newItem);
@@ -50,6 +67,7 @@ const remove = async (id) => {
 module.exports = {
     getAll,
     getOne,
+    getByName,
     post,
     put,
     patch,
