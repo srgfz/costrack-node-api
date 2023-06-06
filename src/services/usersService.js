@@ -36,8 +36,7 @@ const getInfo = async (email) => {
     return await User.findOne({
         where: {
             email: email,
-        },
-        attributes: ["id", "nombre", "apellidos", "curso", "centro", "email"],
+        }
     })
 }
 
@@ -55,10 +54,10 @@ const createToken = (user) => {
     }
     const payload = {
         id: user.id,//id
-        rol: user.user.rol,//rol
+        rol: user.rol,//rol
         createdAt: moment().unix(),//Fecha de creación
         expiredAt: moment().add(8, "hours").unix(),//Duración
-        idEmpresa: user.empresaId
+        idEmpresa: user.comercial.empresaId
     }
     return jwt.encode(payload, "Frase para probar .env")
     //Este token lo recibiré en cliente y lo guardaré (en localStorage)
@@ -71,30 +70,21 @@ const login = async (body) => {
     }
     const user = await User.findOne({
         where: {
-            email: body.email,
+            email: body.email
+        },
+        include: {
+            model: Comercial,
+            attributes: ["empresaId"]
         }
     });
     if (user) {
         if (bcryptjs.compareSync(body.password, user.password)) {//Login correcto
-            if (body.rol === 0) {
-                const comercial = await Comercial.findOne({
-                    where: {
-                        userId: user.id,
-                    },
-                    include: {
-                        model: User,
-                        attributes: ["rol"]
-                    }
-                });
-                return { token: createToken(comercial) }//Si el login es correcto creamos y devolvemos el token para ese usuario
-            } else if (body.rol === 1) {
-                return { token: createToken(user) }//Si el login es correcto creamos y devolvemos el token para ese usuario
-            }
+            return { token: createToken(user) }//Si el login es correcto creamos y devolvemos el token para ese usuario
         } else {//Contraseña incorrecta
-            return { error: "Login fallido 2" };
+            return { error: "Contraseña y/o email incorrectos" };
         }
     } else {//El user no existe (email incorrecto)
-        return { error: "Login fallido 1" };
+        return { error: "Contraseña y/o email incorrectos" };
     }
 }
 

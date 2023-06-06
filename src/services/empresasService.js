@@ -2,6 +2,12 @@
 const Empresa = require("../models/Empresa")
 const Cliente = require("../models/Cliente")
 const Articulo = require("../models/Articulo")
+const Comercial = require("../models/Comercial")
+const Gasto = require("../models/Gasto")
+const Pedido = require("../models/Pedido")
+const PedidoLinea = require("../models/PedidoLinea")
+
+
 
 
 
@@ -49,6 +55,31 @@ const getProducts = async (id) => {
     }
 }
 
+const getCommercial = async (id) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: [
+                {
+                    model: Comercial,
+                    include: [
+                        Gasto,
+                        {
+                            model: Pedido,
+                            include: PedidoLinea
+                        }
+                    ]
+                }
+            ]
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+
 const getOne = async (id) => {
     try {
         return await Empresa.findOne({
@@ -87,6 +118,7 @@ module.exports = {
     getAll,
     getClients,
     getProducts,
+    getCommercial,
     getOne,
     post,
     put,

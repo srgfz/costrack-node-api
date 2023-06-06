@@ -12,6 +12,10 @@ const getProducts = async (req, res) => {
     res.json(await empresasService.getProducts(req.params.id))
 }
 
+const getCommercial = async (req, res) => {
+    res.json(await empresasService.getCommercial(req.params.id))
+}
+
 const getOne = async (req, res) => {
     res.json(await empresasService.getOne(req.params.id))
 }
@@ -41,6 +45,7 @@ module.exports = {
     getAll,
     getClients,
     getProducts,
+    getCommercial,
     getOne,
     post,
     remove,

@@ -40,6 +40,10 @@ Cliente.belongsTo(Empresa)
 
 
 Empresa.belongsTo(User)
+User.hasOne(Empresa)
+
 
 Comercial.belongsTo(User)
+User.hasOne(Comercial)
+
 
