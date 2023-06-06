@@ -5,6 +5,7 @@ const Pedido = require("../models/Pedido")
 const PedidoLinea = require("../models/PedidoLinea")
 const Articulo = require("../models/Articulo")
 
+const { Op } = require("sequelize");
 
 
 const getAll = async () => {
@@ -39,8 +40,31 @@ const getBills = async (id) => {
             },
             include: {
                 model: Gasto,
-                order: [["fecha_gasto", "DESC"]] // Ordenar por la columna "fecha_gasto" en orden descendente
             },
+            order: [[Gasto, "fecha_gasto", "DESC"]],
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+const getBillsByDates = async (id, date1, date2) => {
+    try {
+        return await Comercial.findOne({
+            where: {
+                id: id,
+            },
+            include: [
+                {
+                    model: Gasto,
+                    where: {
+                        fecha_gasto: {
+                            [Op.between]: [date1, date2]
+                        }
+                    },
+                }
+            ],
+            order: [[Gasto, "fecha_gasto", "DESC"]],
         });
     } catch (error) {
         return error;
@@ -61,8 +85,34 @@ const getOrders = async (id) => {
                         model: Articulo,
                     },
                 },
-                order: [["createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
             },
+            order: [[Pedido, "createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
+
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+const getOrdersByDates = async (id, date1, date2) => {
+    try {
+        return await Comercial.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Pedido,
+                include: {
+                    model: PedidoLinea,
+                    include: Articulo
+                },
+                where: {
+                    createdAt: {
+                        [Op.between]: [date1, date2]
+                    }
+                },
+            },
+            order: [[Pedido, "createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
         });
     } catch (error) {
         return error;
@@ -94,7 +144,9 @@ module.exports = {
     getAll,
     getOne,
     getBills,
+    getBillsByDates,
     getOrders,
+    getOrdersByDates,
     post,
     put,
     patch,

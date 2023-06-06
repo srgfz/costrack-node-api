@@ -10,11 +10,19 @@ const getOne = async (req, res) => {
 }
 
 const getBills = async (req, res) => {
-    res.json(await comercialesService.getBills(req.params.id))
+    if (req.query.date1 && req.query.date2) {
+        res.json(await comercialesService.getBillsByDates(req.params.id, req.query.date1, req.query.date2))
+    } else {
+        res.json(await comercialesService.getBills(req.params.id))
+    }
 }
 
 const getOrders = async (req, res) => {
-    res.json(await comercialesService.getOrders(req.params.id))
+    if (req.query.date1 && req.query.date2) {
+        res.json(await comercialesService.getOrdersByDates(req.params.id, req.query.date1, req.query.date2))
+    } else {
+        res.json(await comercialesService.getOrders(req.params.id))
+    }
 }
 
 const post = async (req, res) => {

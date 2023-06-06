@@ -13,8 +13,6 @@ empresasRouter.get("/clientesByName/:id", middlewares.checkEmployee, middlewares
 empresasRouter.get("/articulos/:id", middlewares.checkEmployee, middlewares.checkEmpresaAndIdEmpresa, empresasController.getProducts)
 empresasRouter.get("/articulosByName/:id", middlewares.checkEmployee, middlewares.checkEmpresaAndIdEmpresa, empresasController.getProductsByName)
 empresasRouter.get("/comerciales/:id", middlewares.checkEmpresaRol, middlewares.checkId, empresasController.getCommercial)
-empresasRouter.get("/comercialesByName/:id", middlewares.checkEmpresaRol, middlewares.checkId, empresasController.getComercialByName)
-empresasRouter.get("/comercialesByDates/:id", middlewares.checkEmpresaRol, middlewares.checkId, empresasController.getCommercialByDates)
 empresasRouter.post("/", empresasController.post)
 empresasRouter.put("/:id", middlewares.checkEmpresaRol, middlewares.checkId, empresasController.put)
 empresasRouter.patch("/:id", middlewares.checkEmpresaRol, middlewares.checkId, empresasController.patch)

@@ -28,8 +28,8 @@ const getClients = async (id) => {
             },
             include: {
                 model: Cliente,
-                order: [["nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
             },
+            order: [[Cliente, "nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
         });
     } catch (error) {
         return error;
@@ -49,9 +49,9 @@ const getClientsByName = async (id, q) => {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
-                order: [["nombre", "ASC"]],
                 limit: 5, // Limitar la cantidad de clientes a 5
             },
+            order: [[Cliente, "nombre", "ASC"]],
         });
     } catch (error) {
         return error;
@@ -67,8 +67,8 @@ const getProducts = async (id) => {
             },
             include: {
                 model: Articulo,
-                order: [["nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
             },
+            order: [[Articulo, "nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
         });
     } catch (error) {
         return error;
@@ -88,9 +88,9 @@ const getProductsByName = async (id, q) => {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
-                order: [["nombre", "ASC"]],
                 limit: 5, // Limitar la cantidad de productos a 5
             },
+            order: [[Articulo, "nombre", "ASC"]],
         });
     } catch (error) {
         return error;
@@ -106,7 +106,6 @@ const getCommercial = async (id) => {
             include: [
                 {
                     model: Comercial,
-                    order: [["nombre", "ASC"], ["apellidos", "ASC"]], // Ordenar por nombre y apellidos en orden ascendente
                     include: [
                         Gasto,
                         {
@@ -116,6 +115,7 @@ const getCommercial = async (id) => {
                     ],
                 },
             ],
+            order: [[Comercial, "nombre", "ASC"], [Comercial, "apellidos", "ASC"]], // Ordenar por nombre y apellidos en orden ascendente
         });
     } catch (error) {
         return error;
@@ -140,19 +140,29 @@ const getCommercialByDates = async (id, date1, date2) => {
                                     [Op.between]: [date1, date2]
                                 }
                             },
+                            order: [["fecha_gasto", "DESC"]] // Ordenar por la columna "fecha_gasto" en orden descendente
                         },
                         {
                             model: Pedido,
-                            include: PedidoLinea,
+                            include: {
+                                model: PedidoLinea,
+                                include: Articulo
+                            },
                             where: {
                                 createdAt: {
                                     [Op.between]: [date1, date2]
                                 }
-                            }
+                            },
+                            order: [["createdAt", "DESC"]]
                         },
                     ],
+                    order: [[Gasto, "fecha_gasto", "DESC"], [Pedido, "createdAt", "ASC"]]
                 },
             ],
+            order: [
+                [Comercial, 'nombre', 'ASC'],
+                [Comercial, 'apellidos', 'ASC']
+            ]
         });
     } catch (error) {
         return error;
@@ -173,7 +183,7 @@ const getComercialByName = async (id, q) => {
                     }
                 },
                 order: [["nombre", "ASC"]],
-                limit: 5, // Limitar la cantidad de productos a 5
+                limit: 5, // Limitar la cantidad a 5
             },
         });
     } catch (error) {

@@ -21,15 +21,13 @@ const getProductsByName = async (req, res) => {
 }
 
 const getCommercial = async (req, res) => {
-    res.json(await empresasService.getCommercial(req.params.id))
-}
-
-const getComercialByName = async (req, res) => {
-    res.json(await empresasService.getComercialByName(req.params.id, req.query.q))
-}
-
-const getCommercialByDates = async (req, res) => {
-    res.json(await empresasService.getComercialByName(req.params.id, req.query.date1, req.query.date2))
+    if (req.query.date1 && req.query.date2) {
+        res.json(await empresasService.getCommercialByDates(req.params.id, req.query.date1, req.query.date2))
+    } else if (req.query.q) {
+        res.json(await empresasService.getComercialByName(req.params.id, req.query.q))
+    } else {
+        res.json(await empresasService.getCommercial(req.params.id))
+    }
 }
 
 const getOne = async (req, res) => {
@@ -63,8 +61,6 @@ module.exports = {
     getProducts,
     getProductsByName,
     getCommercial,
-    getComercialByName,
-    getCommercialByDates,
     getOne,
     post,
     remove,

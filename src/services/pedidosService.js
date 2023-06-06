@@ -1,5 +1,7 @@
 //Importamos el modelo de componente:
+const Articulo = require("../models/Articulo")
 const Pedido = require("../models/Pedido")
+const PedidoLinea = require("../models/PedidoLinea")
 
 
 const getAll = async () => {
@@ -18,7 +20,13 @@ const getOne = async (id) => {
         return await Pedido.findOne({
             where: {
                 id: id,
-            }
+            },
+            include: {
+                model: PedidoLinea,
+                include: {
+                    model: Articulo,
+                },
+            },
         })
     }
     catch (error) {
