@@ -44,7 +44,8 @@ const getInfo = async (email) => {
 const createToken = (user) => {
     if (user.rol === 1) {
         const payload = {
-            id: user.id,//id
+            userId: user.id,//id
+            idEmpresa: user.empresa.id,
             rol: user.rol,//rol
             createdAt: moment().unix(),//Fecha de creación
             expiredAt: moment().add(8, "hours").unix(),//Duración
@@ -54,10 +55,11 @@ const createToken = (user) => {
     }
     const payload = {
         id: user.id,//id
+        idComercial: user.comercial.id,
+        idEmpresa: user.comercial.empresaId,
         rol: user.rol,//rol
         createdAt: moment().unix(),//Fecha de creación
         expiredAt: moment().add(8, "hours").unix(),//Duración
-        idEmpresa: user.comercial.empresaId
     }
     return jwt.encode(payload, "Frase para probar .env")
     //Este token lo recibiré en cliente y lo guardaré (en localStorage)
@@ -72,10 +74,16 @@ const login = async (body) => {
         where: {
             email: body.email
         },
-        include: {
-            model: Comercial,
-            attributes: ["empresaId"]
-        }
+        include: [
+            {
+                model: Comercial,
+                attributes: ["id", "empresaId"]
+            },
+            {
+                model: Empresa,
+                attributes: ["id"]
+            }
+        ]
     });
     if (user) {
         if (bcryptjs.compareSync(body.password, user.password)) {//Login correcto
