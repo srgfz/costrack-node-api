@@ -10,7 +10,7 @@ const jwt = require('jwt-simple')
 const moment = require('moment')
 
 const getAll = async () => {
-    return await User.findAll()
+    return await User.findAll({ attributes: ["id", "email", "rol", "createdAt", "updatedAt"] })
 }
 
 const getOne = async (id) => {
@@ -18,17 +18,7 @@ const getOne = async (id) => {
         where: {
             id: id,
         },
-        include: [
-            {
-                model: Cassette,
-                include: {
-                    model: Muestra,
-                },
-            },
-            {
-                model: Muestra,
-            },
-        ]
+        attributes: ["id", "email", "rol", "createdAt", "updatedAt"]
     })
 }
 
@@ -36,7 +26,8 @@ const getInfo = async (email) => {
     return await User.findOne({
         where: {
             email: email,
-        }
+        },
+        attributes: ["id", "email", "rol", "createdAt", "updatedAt"]
     })
 }
 

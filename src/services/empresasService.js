@@ -49,9 +49,9 @@ const getClientsByName = async (id, q) => {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
+                order: [["nombre", "DESC"]],
                 limit: 5, // Limitar la cantidad de clientes a 5
             },
-            order: [[Cliente, "nombre", "ASC"]],
         });
     } catch (error) {
         return error;
@@ -90,7 +90,7 @@ const getProductsByName = async (id, q) => {
                 },
                 limit: 5, // Limitar la cantidad de productos a 5
             },
-            order: [[Articulo, "nombre", "ASC"]],
+            order: [[Articulo, "nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
         });
     } catch (error) {
         return error;
@@ -182,7 +182,7 @@ const getComercialByName = async (id, q) => {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
-                order: [["nombre", "ASC"]],
+                order: [["nombre", "DESC"]],
                 limit: 5, // Limitar la cantidad a 5
             },
         });

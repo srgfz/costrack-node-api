@@ -35,8 +35,27 @@ const getOne = async (id) => {
 }
 
 const post = async (newItem) => {
+    console.log(newItem)
     try {
-        return await Pedido.create(newItem);
+        const newPedido = await Pedido.create({
+            comentarios: newItem.comentarios,
+            comercialId: newItem.comercialId,
+            clienteId: newItem.clienteId
+        });
+        try {
+            newItem.articulos.forEach(async lineaPedido => {
+                await PedidoLinea.create({
+                    cantidad: lineaPedido.cantidad,
+                    precio_unidad: lineaPedido.precio_unidad,
+                    pedidoId: newPedido.id,
+                    articuloId: lineaPedido.articuloId
+                })
+            });
+            return newPedido;
+        }
+        catch (error) {
+            return error
+        }
     }
     catch (error) {
         return error

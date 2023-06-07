@@ -5,19 +5,19 @@ const getAll = async (req, res) => {
 }
 
 const getClients = async (req, res) => {
-    res.json(await empresasService.getClients(req.params.id))
-}
-
-const getClientsByName = async (req, res) => {
-    res.json(await empresasService.getClientsByName(req.params.id, req.query.q))
+    if (req.query.q) {
+        res.json(await empresasService.getClientsByName(req.params.id, req.query.q))
+    } else {
+        res.json(await empresasService.getClients(req.params.id))
+    }
 }
 
 const getProducts = async (req, res) => {
-    res.json(await empresasService.getProducts(req.params.id))
-}
-
-const getProductsByName = async (req, res) => {
-    res.json(await empresasService.getProductsByName(req.params.id, req.query.q))
+    if (req.query.q) {
+        res.json(await empresasService.getProductsByName(req.params.id, req.query.q))
+    } else {
+        res.json(await empresasService.getProducts(req.params.id))
+    }
 }
 
 const getCommercial = async (req, res) => {
@@ -57,9 +57,7 @@ const remove = async (req, res) => {
 module.exports = {
     getAll,
     getClients,
-    getClientsByName,
     getProducts,
-    getProductsByName,
     getCommercial,
     getOne,
     post,
