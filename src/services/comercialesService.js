@@ -6,6 +6,7 @@ const PedidoLinea = require("../models/PedidoLinea")
 const Articulo = require("../models/Articulo")
 
 const { Op } = require("sequelize");
+const Cliente = require("../models/Cliente")
 
 
 const getAll = async () => {
@@ -79,12 +80,15 @@ const getOrders = async (id) => {
             },
             include: {
                 model: Pedido,
-                include: {
-                    model: PedidoLinea,
-                    include: {
-                        model: Articulo,
-                    },
-                },
+                include: [
+                    {
+                        model: PedidoLinea,
+                        include: {
+                            model: Articulo,
+                        },
+                    }, {
+                        model: Cliente
+                    }],
             },
             order: [[Pedido, "createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
 
@@ -102,10 +106,12 @@ const getOrdersByDates = async (id, date1, date2) => {
             },
             include: {
                 model: Pedido,
-                include: {
+                include: [{
                     model: PedidoLinea,
                     include: Articulo
-                },
+                }, {
+                    model: Cliente
+                }],
                 where: {
                     createdAt: {
                         [Op.between]: [date1, date2]
