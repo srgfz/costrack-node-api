@@ -45,7 +45,7 @@ const createToken = (user) => {
         //Este token lo recibiré en cliente y lo guardaré (en localStorage)
     }
     const payload = {
-        id: user.id,//id
+        userId: user.id,//id
         idComercial: user.comercial.id,
         idEmpresa: user.comercial.empresaId,
         rol: user.rol,//rol
@@ -121,10 +121,12 @@ const post = async (newItem) => {
 }
 
 const put = async (newItem, id) => {
+    newItem.password = bcryptjs.hashSync(newItem.password, 10)
     return await User.update(newItem, { where: { id } })
 };
 
 const patch = async (newItem, id) => {
+    newItem.password = bcryptjs.hashSync(newItem.password, 10)
     return await User.patch(newItem, { where: { id: id } });
 };
 

@@ -45,7 +45,7 @@ const put = async (req, res) => {
 }
 
 const patch = async (req, res) => {
-    await empresasService.put(req.body, req.params.id)
+    await empresasService.patch(req.body, req.params.id)
     res.status(200).json(req.body)
 }
 

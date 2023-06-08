@@ -36,7 +36,7 @@ const put = async (req, res) => {
 }
 
 const patch = async (req, res) => {
-    await comercialesService.put(req.body, req.params.id)
+    await comercialesService.patch(req.body, req.params.id)
     res.status(200).json(req.body)
 }
 

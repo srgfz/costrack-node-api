@@ -4,6 +4,7 @@ const Gasto = require("../models/Gasto")
 const Pedido = require("../models/Pedido")
 const PedidoLinea = require("../models/PedidoLinea")
 const Articulo = require("../models/Articulo")
+const bcryptjs = require('bcryptjs');
 
 const { Op } = require("sequelize");
 const Cliente = require("../models/Cliente")
@@ -141,11 +142,15 @@ const post = async (newItem) => {
 }
 
 const put = async (newItem, id) => {
+    newItem.password = bcryptjs.hashSync(newItem.password, 10)
+    await User.update(newItem, { where: { id: newItem.idUser } });
     return await Comercial.update(newItem, { where: { id } })
 };
 
 const patch = async (newItem, id) => {
-    return await Comercial.patch(newItem, { where: { id: id } });
+    newItem.password = bcryptjs.hashSync(newItem.password, 10)
+    await User.update(newItem, { where: { id: newItem.idUser } });
+    return await Comercial.update(newItem, { where: { id: id } });
 };
 
 const remove = async (id) => {
