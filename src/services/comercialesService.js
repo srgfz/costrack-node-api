@@ -7,6 +7,7 @@ const Articulo = require("../models/Articulo")
 
 const { Op } = require("sequelize");
 const Cliente = require("../models/Cliente")
+const User = require("../models/User")
 
 
 const getAll = async () => {
@@ -25,6 +26,10 @@ const getOne = async (id) => {
         return await Comercial.findOne({
             where: {
                 id: id,
+            },
+            include: {
+                model: User,
+                attributes: ["id", "email", "rol", "createdAt", "updatedAt"]
             }
         })
     }
