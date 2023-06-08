@@ -22,7 +22,7 @@ const getProducts = async (req, res) => {
 
 const getCommercial = async (req, res) => {
     if (req.query.date1 && req.query.date2) {
-        res.json(await empresasService.getCommercialByDates(req.params.id, req.query.date1, req.query.date2))
+        res.json(await empresasService.getCommercialByDates(req.params.id, `${req.query.date1} 00:00:01`, `${req.query.date2} 23:59:59`))
     } else if (req.query.q) {
         res.json(await empresasService.getComercialByName(req.params.id, req.query.q))
     } else {

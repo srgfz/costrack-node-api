@@ -33,6 +33,7 @@ const getOne = async (id) => {
     }
 }
 
+
 const getBills = async (id) => {
     try {
         return await Comercial.findOne({
