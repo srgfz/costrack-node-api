@@ -58,7 +58,7 @@ const getBills = async (id) => {
 
 const getBillsByDates = async (id, date1, date2) => {
     try {
-        return await Comercial.findOne({
+        const comercial = await Comercial.findOne({
             where: {
                 id: id,
             },
@@ -74,6 +74,11 @@ const getBillsByDates = async (id, date1, date2) => {
             ],
             order: [[Gasto, "fecha_gasto", "DESC"]],
         });
+        if (comercial) {
+            return comercial
+        } else {
+            return Comercial.findOne({ where: { id: id } })
+        }
     } catch (error) {
         return error;
     }
@@ -107,7 +112,7 @@ const getOrders = async (id) => {
 
 const getOrdersByDates = async (id, date1, date2) => {
     try {
-        return await Comercial.findOne({
+        const comercial = await Comercial.findOne({
             where: {
                 id: id,
             },
@@ -127,6 +132,11 @@ const getOrdersByDates = async (id, date1, date2) => {
             },
             order: [[Pedido, "createdAt", "DESC"]], // Ordenar por la columna "createdAt" en orden descendente
         });
+        if (comercial) {
+            return comercial
+        } else {
+            return Comercial.findOne({ where: { id: id } })
+        }
     } catch (error) {
         return error;
     }
@@ -142,13 +152,16 @@ const post = async (newItem) => {
 }
 
 const put = async (newItem, id) => {
-    newItem.password = bcryptjs.hashSync(newItem.password, 10)
-    await User.update(newItem, { where: { id: newItem.idUser } });
+    if (newItem.password) {
+        newItem.password = bcryptjs.hashSync(newItem.password, 10)
+    } await User.update(newItem, { where: { id: newItem.idUser } });
     return await Comercial.update(newItem, { where: { id } })
 };
 
 const patch = async (newItem, id) => {
-    newItem.password = bcryptjs.hashSync(newItem.password, 10)
+    if (newItem.password) {
+        newItem.password = bcryptjs.hashSync(newItem.password, 10)
+    }
     await User.update(newItem, { where: { id: newItem.idUser } });
     return await Comercial.update(newItem, { where: { id: id } });
 };

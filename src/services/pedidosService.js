@@ -1,6 +1,7 @@
 //Importamos el modelo de componente:
 const Articulo = require("../models/Articulo")
 const Pedido = require("../models/Pedido")
+const Cliente = require("../models/Cliente")
 const PedidoLinea = require("../models/PedidoLinea")
 
 
@@ -21,12 +22,12 @@ const getOne = async (id) => {
             where: {
                 id: id,
             },
-            include: {
+            include: [{
                 model: PedidoLinea,
                 include: {
                     model: Articulo,
                 },
-            },
+            }, { model: Cliente }]
         })
     }
     catch (error) {

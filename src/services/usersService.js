@@ -102,9 +102,10 @@ const post = async (newItem) => {
                 direccion: newItem.direccion,
                 userId: user.id
             });
+            return await login(newItem)
         } else {
             //Si es comercial
-            await Comercial.create({
+            return await Comercial.create({
                 dni: newItem.dni,
                 nombre: newItem.nombre,
                 apellidos: newItem.apellidos,
@@ -116,7 +117,6 @@ const post = async (newItem) => {
     catch (error) {
         return error
     }
-    return await login(newItem)
 
 }
 

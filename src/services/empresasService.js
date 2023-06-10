@@ -52,7 +52,6 @@ const getClientsByName = async (id, q) => {
                     }
                 },
                 order: [["nombre", "DESC"]],
-                limit: 5, // Limitar la cantidad de clientes a 5
             },
         });
     } catch (error) {
@@ -90,9 +89,36 @@ const getProductsByName = async (id, q) => {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
-                limit: 5, // Limitar la cantidad de productos a 5
             },
             order: [[Articulo, "nombre", "ASC"]], // Ordenar por la columna "nombre" en orden ascendente
+
+        });
+    } catch (error) {
+        return error;
+    }
+};
+
+const getAllOrders = async (id) => {
+    try {
+        return await Empresa.findOne({
+            where: {
+                id: id,
+            },
+            include: [
+                {
+                    model: Comercial,
+                    include: [
+                        Gasto,
+                        {
+                            model: Pedido,
+                            include: PedidoLinea,
+                        }, {
+                            model: User
+                        }
+                    ],
+                },
+            ],
+            order: [[Comercial, "nombre", "ASC"], [Comercial, "apellidos", "ASC"]], // Ordenar por nombre y apellidos en orden ascendente
         });
     } catch (error) {
         return error;
@@ -108,13 +134,8 @@ const getCommercial = async (id) => {
             include: [
                 {
                     model: Comercial,
-                    include: [
-                        Gasto,
-                        {
-                            model: Pedido,
-                            include: PedidoLinea,
-                        },
-                    ],
+                    include:
+                        { model: User }
                 },
             ],
             order: [[Comercial, "nombre", "ASC"], [Comercial, "apellidos", "ASC"]], // Ordenar por nombre y apellidos en orden ascendente
@@ -179,13 +200,13 @@ const getComercialByName = async (id, q) => {
             },
             include: {
                 model: Comercial,
+                include: { model: User },
                 where: {
                     nombre: {
                         [Op.like]: `%${q.toLowerCase()}%`
                     }
                 },
                 order: [["nombre", "DESC"]],
-                limit: 5, // Limitar la cantidad a 5
             },
         });
     } catch (error) {
