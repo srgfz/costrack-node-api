@@ -19,9 +19,9 @@ const getBills = async (req, res) => {
 
 const getOrders = async (req, res) => {
     if (req.query.date1 && req.query.date2) {
-        res.json(await comercialesService.getOrdersByDates(req.params.id, `${req.query.date1} 00:00:01`, `${req.query.date2} 23:59:59`))
+        return res.json(await comercialesService.getOrdersByDates(req.params.id, `${req.query.date1} 00:00:01`, `${req.query.date2} 23:59:59`))
     } else {
-        res.json(await comercialesService.getOrders(req.params.id))
+        return res.json(await comercialesService.getOrders(req.params.id))
     }
 }
 

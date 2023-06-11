@@ -16,6 +16,19 @@ const options = {
                 email: "fernandezsergio10@gmail.com"
             }
         },
+        components: {
+            securitySchemes: {
+                Token: {
+                    type: 'apiKey',
+                    name: 'key',
+                    in: 'header',
+                    description: 'API Key required to access the endpoints. Enter it in the format: Bearer YOUR_API_KEY',
+                },
+            },
+        },
+        security: [{
+            Token: [],
+        }],
     },
     apis: [path.join(__dirname, "../../routes/**/*.js")], // Ruta a todos los archivos de enrutadores en tu proyecto
 };
@@ -25,12 +38,30 @@ const swaggerSpec = swaggerJSDoc(options);
 
 // Ruta de la documentación
 const swaggerDocs = (app, port) => {
-    app.use("/costrack/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    const customCss = `
+    <style>
+      .swagger-ui .topbar .wrapper .topbar-wrapper .link span:nth-child(1)::before {
+        content: "🔐";
+        margin-right: 0.25rem;
+      }
+    </style>
+  `;
+
+    app.use(
+        "/costrack/api/v1/docs",
+        swaggerUi.serve,
+        swaggerUi.setup(swaggerSpec, {
+            customCss,
+            customSiteTitle: "Costrack API",
+        })
+    );
+
     app.get("/costrack/api/v1/docs.json", (req, res) => {
         res.setHeader("Content-Type", "application/json");
-        res.send(swaggerSpec); // Utiliza "send" en lugar de "rend" para enviar el JSON
+        res.send(swaggerSpec);
     });
-    console.log(`Documentación de la api en http://localhost:${port}/costrack/api/v1/docs}`);
+
+    console.log(`Documentación de la API en http://localhost:${port}/costrack/api/v1/docs`);
 };
 
 module.exports = { swaggerDocs };

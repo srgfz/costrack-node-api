@@ -15,6 +15,8 @@ const middlewares = require("./middlewares/middlewares")
  * @swagger
  * /costrack/comerciales:
  *   get:
+ *     security:
+ *       - Token: []
  *     summary: Obtener todos los comerciales
  *     tags: [Comerciales]
  *     responses:

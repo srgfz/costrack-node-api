@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 const apiRoutesV1 = require("./routes/v1/apiRouter");
@@ -15,7 +16,7 @@ const { swaggerDocs: v1SwaggerDocs } = require("./routes/v1/swagger")
 // Conversión a json datos que nos envína para post, put, patch...
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use(function (req, res, next) {
     // specify CORS headers to send 
     res.header('Access-Control-Allow-Origin', '*');
