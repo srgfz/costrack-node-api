@@ -48,7 +48,7 @@ const checkComercialRol = (req, res, next) => {
             return res.status(401).json({ error: "no-auth" });
         }
     } catch (error) {//Si el token no coincide
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -65,7 +65,7 @@ const checkEmpresaRol = (req, res, next) => {
             return res.status(401).json({ error: "no-auth" });
         }
     } catch (error) {//Si el token no coincide
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -83,7 +83,7 @@ const checkId = (req, res, next) => {
             return res.status(401).json({ error: "no-auth" });
         }
     } catch (error) {//Si el token no coincide
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -99,7 +99,7 @@ const checkEmpresaAndIdEmpresa = (req, res, next) => {
         }
     } catch (error) {//Si el token no coincide
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -115,7 +115,7 @@ const checkComercialAndIdComercial = (req, res, next) => {
         }
     } catch (error) {//Si el token no coincide
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -131,7 +131,7 @@ const checkEmployee = (req, res, next) => {
         }
     } catch (error) {//Si el token no coincide
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -151,12 +151,12 @@ const checkEmpresa = async (req, res, next) => {
                 }
             });
             if (!comercial) {
-                return res.status(401).json({ error: "no-auth" })
+                return res.status(401).json({ error: "no-auth0" })
             }
         }
     } catch (error) {
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -176,12 +176,12 @@ const checkEmpresaClient = async (req, res, next) => {
                 }
             });
             if (!cliente) {
-                return res.status(401).json({ error: "no-auth" })
+                return res.status(401).json({ error: "no-auth0" })
             }
         }
     } catch (error) {
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -198,7 +198,7 @@ const checkNewItem = (req, res, next) => {
         }
     } catch (error) {
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }
@@ -227,7 +227,7 @@ const checkCifAndDni = async (req, res, next) => {
 
     } catch (error) {
         console.error(error);
-        return res.status(401).json({ error: "no-auth" });
+        return res.status(401).json({ error: "Ha ocurrido un error en el servidor" });
     }
     next()
 }

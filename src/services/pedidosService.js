@@ -50,18 +50,26 @@ const post = async (newItem) => {
                     precio_unidad: lineaPedido.precio_unidad,
                     pedidoId: newPedido.id,
                     articuloId: lineaPedido.articuloId
-                })
+                });
+                // Actualizar el campo "stock" del artículo en PedidoLinea
+                const articulo = await Articulo.findByPk(lineaPedido.articuloId);
+                if (articulo) {
+                    const nuevoStock = articulo.stock - lineaPedido.cantidad;
+                    await articulo.update({ stock: nuevoStock });
+                }
             });
             return newPedido;
+
         }
         catch (error) {
-            return error
+            return error;
         }
     }
     catch (error) {
-        return error
+        return error;
     }
 }
+
 
 const put = async (newItem, id) => {
     return await Pedido.update(newItem, { where: { id } })

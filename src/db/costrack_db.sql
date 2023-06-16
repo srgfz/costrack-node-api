@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2023 a las 16:02:17
+-- Tiempo de generación: 11-06-2023 a las 22:29:31
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.0.19
 
@@ -126,7 +126,6 @@ INSERT INTO `clientes` (`id`, `nombre`, `nombre_contacto`, `email`, `telefono`, 
 (7, 'Muebles Rodríguez', 'Sara Rodríguez', 'sara.rodriguez@gmail.com', '+34 667891234', 'Calle Mayor, 50, 46002 Valencia', '2023-06-06 11:44:39', '2023-06-06 11:44:39', 8),
 (8, 'Carpintería Molina', 'Luisa Molina', 'luisa.molina@gmail.com', '+34 678912345', 'Calle Príncipe, 15, 28080 Madrid', '2023-06-06 11:44:51', '2023-06-06 11:44:51', 9),
 (9, 'Muebles Gutiérrez', 'Jorge Gutiérrez', 'jorge.gutierrez@gmail.com', '+34 645678912', 'Avenida Libertad, 20, 46003 Valencia', '2023-06-06 11:44:57', '2023-06-06 11:44:57', 10),
-(10, 'Arquitectura y Diseño S.L.', 'María González', 'maria.gonzalez@gmail.com', '+34 612345678', 'Calle Mayor, 10, 28002 Madrid', '2023-06-06 11:46:16', '2023-06-06 11:46:16', 1),
 (11, 'Marketing Digital Solutions', 'Roberto Martínez', 'roberto.martinez@gmail.com', '+34 678912345', 'Avenida Libertad, 25, 08001 Barcelona', '2023-06-06 11:46:20', '2023-06-06 11:46:20', 2),
 (12, 'Construcciones y Reformas Gómez', 'Juan Gómez', 'juan.gomez@gmail.com', '+34 645678912', 'Calle Principal, 20, 41001 Sevilla', '2023-06-06 11:46:24', '2023-06-06 11:46:24', 3),
 (13, 'Ingeniería y Servicios Técnicos', 'Laura Rodríguez', 'laura.rodriguez@gmail.com', '+34 667891234', 'Calle San Miguel, 15, 29001 Málaga', '2023-06-06 11:46:27', '2023-06-06 11:46:27', 4),
@@ -452,7 +451,6 @@ INSERT INTO `pedidos` (`id`, `comentarios`, `createdAt`, `updatedAt`, `comercial
 (7, 'Envío a domicilio', '2023-05-15 12:05:00', '2023-05-15 12:05:00', 1, 7),
 (8, 'Pedido urgente', '2023-02-01 09:30:00', '2023-02-01 09:30:00', 2, 8),
 (9, 'Entrega programada', '2023-04-25 14:45:00', '2023-04-25 14:45:00', 1, 9),
-(10, 'Envío a dirección de obra', '2023-02-14 11:10:00', '2023-02-14 11:10:00', 2, 10),
 (11, 'Pedido estándar', '2023-01-06 16:20:00', '2023-01-06 16:20:00', 1, 11),
 (12, 'Entrega en tienda', '2023-02-22 10:55:00', '2023-02-22 10:55:00', 2, 12),
 (13, 'Pedido para reforma', '2023-03-18 15:40:00', '2023-03-18 15:40:00', 1, 13),
@@ -502,13 +500,14 @@ INSERT INTO `pedidos` (`id`, `comentarios`, `createdAt`, `updatedAt`, `comercial
 (57, 'Envío a domicilio', '2022-11-12 12:05:00', '2022-11-12 12:05:00', 1, 7),
 (58, 'Pedido urgente', '2022-10-29 09:30:00', '2022-10-29 09:30:00', 2, 8),
 (59, 'Entrega programada', '2022-09-15 14:45:00', '2022-09-15 14:45:00', 1, 9),
-(60, 'Envío a dirección de obra', '2022-08-10 11:10:00', '2022-08-10 11:10:00', 2, 10),
 (61, 'Pedido estándar', '2022-07-18 16:20:00', '2022-07-18 16:20:00', 1, 11),
 (62, 'Entrega en tienda', '2022-06-22 10:55:00', '2022-06-22 10:55:00', 2, 12),
 (63, 'Pedido para reforma', '2022-05-30 15:40:00', '2022-05-30 15:40:00', 1, 13),
 (64, 'Envío a domicilio', '2022-04-12 12:05:00', '2022-04-12 12:05:00', 2, 14),
 (65, 'Pedido urgente', '2022-03-26 09:30:00', '2022-03-26 09:30:00', 1, 15),
-(66, 'Entrega programada', '2022-02-05 14:45:00', '2022-02-05 14:45:00', 2, 16);
+(66, 'Entrega programada', '2022-02-05 14:45:00', '2022-02-05 14:45:00', 2, 16),
+(67, 'Comentarios Nuevo Pedido', '2023-06-11 16:43:25', '2023-06-11 16:43:25', 2, 20),
+(68, 'Comentarios Nuevo Pedido', '2023-06-11 16:44:54', '2023-06-11 16:44:54', 2, 20);
 
 -- --------------------------------------------------------
 
@@ -538,7 +537,6 @@ INSERT INTO `pedido_lineas` (`id`, `cantidad`, `precio_unidad`, `pedidoId`, `art
 (7, 2, 7.50, 7, 9),
 (8, 1, 18.00, 8, 2),
 (9, 3, 6.50, 9, 6),
-(10, 2, 9.75, 10, 11),
 (11, 1, 4.50, 11, 4),
 (12, 4, 11.00, 12, 10),
 (13, 1, 7.25, 13, 14),
@@ -588,7 +586,6 @@ INSERT INTO `pedido_lineas` (`id`, `cantidad`, `precio_unidad`, `pedidoId`, `art
 (57, 1, 3.50, 57, 7),
 (58, 4, 10.00, 58, 5),
 (59, 1, 14.25, 59, 2),
-(60, 3, 4.75, 60, 6),
 (61, 2, 17.00, 61, 8),
 (62, 1, 2.50, 62, 10),
 (63, 4, 9.25, 63, 4),
@@ -622,9 +619,6 @@ INSERT INTO `pedido_lineas` (`id`, `cantidad`, `precio_unidad`, `pedidoId`, `art
 (91, 4, 3.50, 9, 7),
 (92, 1, 10.00, 9, 5),
 (93, 3, 14.25, 9, 2),
-(94, 2, 4.75, 10, 6),
-(95, 1, 17.00, 10, 8),
-(96, 4, 2.50, 10, 10),
 (97, 1, 9.25, 11, 4),
 (98, 3, 15.50, 11, 1),
 (99, 2, 5.75, 11, 3),
@@ -708,7 +702,11 @@ INSERT INTO `pedido_lineas` (`id`, `cantidad`, `precio_unidad`, `pedidoId`, `art
 (177, 1, 9.25, 37, 4),
 (178, 3, 15.50, 38, 1),
 (179, 2, 5.75, 38, 3),
-(180, 1, 12.00, 38, 9);
+(180, 1, 12.00, 38, 9),
+(181, 3, 9.50, 67, 5),
+(182, 3, 9.50, 68, 5),
+(183, 30, 6.00, 68, 3),
+(184, 9, 20.00, 68, 8);
 
 -- --------------------------------------------------------
 
@@ -928,7 +926,7 @@ ALTER TABLE `articulos`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `comercials`
@@ -952,13 +950,13 @@ ALTER TABLE `gastos`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_lineas`
 --
 ALTER TABLE `pedido_lineas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedors`
@@ -970,7 +968,7 @@ ALTER TABLE `proveedors`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas
@@ -980,20 +978,20 @@ ALTER TABLE `users`
 -- Filtros para la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  ADD CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (`proveedorId`) REFERENCES `proveedors` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `articulos_ibfk_2` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (`proveedorId`) REFERENCES `proveedors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `articulos_ibfk_2` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `comercials`
 --
 ALTER TABLE `comercials`
-  ADD CONSTRAINT `comercials_ibfk_1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `comercials_ibfk_1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comercials_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
@@ -1006,21 +1004,21 @@ ALTER TABLE `empresas`
 -- Filtros para la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`comercialId`) REFERENCES `comercials` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`comercialId`) REFERENCES `comercials` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`comercialId`) REFERENCES `comercials` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`clienteId`) REFERENCES `clientes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`comercialId`) REFERENCES `comercials` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`clienteId`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedido_lineas`
 --
 ALTER TABLE `pedido_lineas`
-  ADD CONSTRAINT `pedido_lineas_ibfk_1` FOREIGN KEY (`pedidoId`) REFERENCES `pedidos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedido_lineas_ibfk_2` FOREIGN KEY (`articuloId`) REFERENCES `articulos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_lineas_ibfk_1` FOREIGN KEY (`pedidoId`) REFERENCES `pedidos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_lineas_ibfk_2` FOREIGN KEY (`articuloId`) REFERENCES `articulos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

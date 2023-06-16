@@ -11,39 +11,39 @@ const Proveedor = require("../models/Proveedor")
 
 
 //Relación 1 a N:
-Comercial.hasMany(Gasto)
+Comercial.hasMany(Gasto, { onDelete: "CASCADE" })
 Gasto.belongsTo(Comercial)
 
-Comercial.hasMany(Pedido)
+Comercial.hasMany(Pedido, { onDelete: "CASCADE" })
 Pedido.belongsTo(Comercial)
 
-Cliente.hasMany(Pedido)
+Cliente.hasMany(Pedido, { onDelete: "CASCADE" })
 Pedido.belongsTo(Cliente)
 
-Pedido.hasMany(PedidoLinea)
+Pedido.hasMany(PedidoLinea, { onDelete: "CASCADE" })
 PedidoLinea.belongsTo(Pedido)
 
-Articulo.hasMany(PedidoLinea)
+Articulo.hasMany(PedidoLinea, { onDelete: "CASCADE" })
 PedidoLinea.belongsTo(Articulo)
 
-Proveedor.hasMany(Articulo)
+Proveedor.hasMany(Articulo, { onDelete: "CASCADE" })
 Articulo.belongsTo(Proveedor)
 
-Empresa.hasMany(Comercial)
+Empresa.hasMany(Comercial, { onDelete: "CASCADE" })
 Comercial.belongsTo(Empresa)
 
-Empresa.hasMany(Articulo)
+Empresa.hasMany(Articulo, { onDelete: "CASCADE" })
 Articulo.belongsTo(Empresa)
 
-Empresa.hasMany(Cliente)
+Empresa.hasMany(Cliente, { onDelete: "CASCADE" })
 Cliente.belongsTo(Empresa)
 
 
 Empresa.belongsTo(User)
-User.hasOne(Empresa)
+User.hasOne(Empresa, { onDelete: "CASCADE" })
 
 
 Comercial.belongsTo(User)
-User.hasOne(Comercial)
+User.hasOne(Comercial, { onDelete: "CASCADE" })
 
 
