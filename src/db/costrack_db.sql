@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2023 a las 22:29:31
+-- Tiempo de generación: 19-06-2023 a las 20:58:08
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.0.19
 
@@ -801,31 +801,31 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `rol`, `createdAt`, `updatedAt`) VALUES
-(1, 'empresa1@gmail.com', '$2a$10$L8k7j/5Nf7H.EcUFL5Ec1Ooc6kpna.fjRIYZG8R46XcQpyUm/BhcC', 1, '2023-06-06 11:20:30', '2023-06-06 11:20:30'),
-(2, 'empresa2@gmail.com', '$2a$10$3Euu7/W3Qo62vdpdjxTp4umThrmaWqh95O/rCaZdgr23OaosjskvO', 1, '2023-06-06 11:20:46', '2023-06-06 11:20:46'),
-(3, 'comercial1@gmail.com', '$2a$10$a5pKtOSGas0X/XCJrRorpufBaN89sdIqFX/.HTAb0tGZHRQx.ZGq.', 0, '2023-06-06 11:21:22', '2023-06-06 11:21:22'),
-(4, 'comercial2@gmail.com', '$2a$10$N/QPOdtcijivHY4bGbU/3OmPrhDtMSuFfdb1G1SP8TF4le1nU7Lw.', 0, '2023-06-06 11:21:41', '2023-06-06 11:21:41'),
-(5, 'comercial3@gmail.com', '$2a$10$yg7CLDTUuQKugsvToAAxJeUNC7JS0XmysDbujpSxTsieywkf79izW', 0, '2023-06-06 11:23:58', '2023-06-06 11:23:58'),
-(6, 'comercial4@gmail.com', '$2a$10$2lglx3zSfhZwY1vfnX.Ao.2YItC0.KvhopV6mJbC4Bq0Xfehhhje2', 0, '2023-06-06 11:24:25', '2023-06-06 11:24:25'),
-(7, 'juan.perez@gmail.com', '$2a$10$5lOcEeVRK6yseGt7FVoLVukWsGJJz1F.amhMxs9jcYaFobPWgQ9Vq', 1, '2023-06-06 11:25:47', '2023-06-06 11:25:47'),
-(8, 'laura.gonzalez@gmail.com', '$2a$10$sWvKaQ658/3//BlpPVBwluc99CK55I07QcrVY9M7CBPqO1RQkxUym', 1, '2023-06-06 11:25:53', '2023-06-06 11:25:53'),
-(9, 'carlos.martinez@gmail.com', '$2a$10$NQjFLKJbemOksixk6SBDQORKwKJ0f0VTVKGDV0rUKXEfK47Vz2LYG', 1, '2023-06-06 11:25:59', '2023-06-06 11:25:59'),
-(10, 'ana.rodriguez@gmail.com', '$2a$10$BZvX5O/aYmiaMcM.uYSfkOU1a38dLKJL98ewfHYKjlCGxQLsNHsCi', 1, '2023-06-06 11:26:25', '2023-06-06 11:26:25'),
-(11, 'david.lopez@gmail.com', '$2a$10$wcQXjVL9C9ffWdSN/wrwMueQo.SW74A1NfaZAYQ/6MdP9ovn3IEL.', 1, '2023-06-06 11:26:32', '2023-06-06 11:26:32'),
-(12, 'maria.garcia@gmail.com', '$2a$10$5o0FI.DC05Zt53d3zFZdTOl/9MnP9xrTbIRqsvKA6pgv6LEIphP5C', 1, '2023-06-06 11:26:41', '2023-06-06 11:26:41'),
-(13, 'javier.martinez@gmail.com', '$2a$10$N.B5CeZeELFRjVTUq8wdLuTRCpLrT5afv4dVunkWK2mfxB1B63H0W', 1, '2023-06-06 11:26:46', '2023-06-06 11:26:46'),
-(14, 'luisa.fernandez@gmail.com', '$2a$10$kfvswuXHXOEz.O7ispt0Huxy.OEXAT09KtrLpVCdCfa5xL5.GsBr2', 1, '2023-06-06 11:27:22', '2023-06-06 11:27:22'),
-(15, 'juan.garcia@gmail.com', '$2a$10$m0zJRqN16uCwlHrh74O8JOBLN7mRDVXwsFxiAYHwtS3fQZClchOPa', 0, '2023-06-06 11:33:39', '2023-06-06 11:33:39'),
-(16, 'laura.lopez@gmail.com', '$2a$10$U49omMqrGSar0Pyiw2Yt3eMeHW6qcdWgkzdWNasksc.7eyH51c.WC', 0, '2023-06-06 11:33:47', '2023-06-06 11:33:47'),
-(18, 'ana.fernandez@gmail.com', '$2a$10$rJtMZ8PsYCY2hUQ9w8Ve4.VqGNuxwidEAgI1KQH./fL.ZXwqNmk2y', 0, '2023-06-06 11:34:42', '2023-06-06 11:34:42'),
-(19, 'pedro.gomez@gmail.com', '$2a$10$RB8QV7uOs/IFcIyUNL1uBOwGclHSyiMeF0s5PfYTMkyte5sBASgeq', 0, '2023-06-06 11:34:46', '2023-06-06 11:34:46'),
-(20, 'lucia.rodriguez@gmail.com', '$2a$10$2E2QkO.KusjeRzpv6N/M8.YFyFihc1QcpKoKeAGzoUI7qyTmdF5G6', 0, '2023-06-06 11:34:52', '2023-06-06 11:34:52'),
-(21, 'daniel.lopez@gmail.com', '$2a$10$A1GzsHSIHgMjivBZ.VSx8.wIEJUeNivTqpI8VIWnq/kjfUou/FkRq', 0, '2023-06-06 11:35:00', '2023-06-06 11:35:00'),
-(22, 'laura.garcia@gmail.com', '$2a$10$yuq9fWhsdf.jL5ZaQGxg8eYDS3f65e5Xc8xTs8mdvElocqmdGJfXe', 0, '2023-06-06 11:35:08', '2023-06-06 11:35:08'),
-(23, 'carlos.sanchez@gmail.com', '$2a$10$k3gDLlcjpKJVrP7Grpa4Ze3Hci0qqytIT7oqI2KG0mTHT8O4VUugC', 0, '2023-06-06 11:35:19', '2023-06-06 11:35:19'),
-(24, 'maria.gonzalez@gmail.com', '$2a$10$0ny65DikUdN3NsL1t3ELEO5qePIGrc2jlXjUEb3j.gAQMy3LwlhnG', 0, '2023-06-06 11:35:26', '2023-06-06 11:35:26'),
-(25, 'javier.martin@gmail.com', '$2a$10$H/PcUswIwx162iYpKeNgS.1Sc6p2UrFDrDjQF/HQGV.ntexSKjLL.', 0, '2023-06-06 11:35:31', '2023-06-06 11:35:31'),
-(27, 'lucia.lopez@gmail.com', '$2a$10$pk4q1aXVrkdh683CkQFY/uienXJfEGRVKU1gU4L5im2k.Z/EM/Utu', 0, '2023-06-06 11:35:40', '2023-06-06 11:35:40'),
+(1, 'empresa1@gmail.com', '$2a$10$wm9DOjYs5nIPxMIkucWzW.fZOUOCkB21xi3g/WQRabQxcuveWr3p2', 1, '2023-06-06 11:20:30', '2023-06-19 18:43:43'),
+(2, 'empresa2@gmail.com', '$2a$10$5Rj26KRPVmSv91cxlY6vguygAjjfJn/8KenkoMFzkgxZliChQJ.qW', 1, '2023-06-06 11:20:46', '2023-06-19 18:44:27'),
+(3, 'comercial1@gmail.com', '$2a$10$Jvy/sHwOMKl1hn0TQ0oWHefYcDL2wnS3OSiYon0ykjGIn0Aqs030K', 0, '2023-06-06 11:21:22', '2023-06-19 18:45:01'),
+(4, 'comercial2@gmail.com', '$2a$10$RZBEIiKQKai5qPXAfP0rIu/AkrGemXNUXKdmAWrGJP82iI8ZnTsFq', 0, '2023-06-06 11:21:41', '2023-06-19 18:45:22'),
+(5, 'comercial3@gmail.com', '$2a$10$Nje/JK94eviRbyYXWs2FUOeDEBLXpVENhksjTHYce0PZaDqqYP0xK', 0, '2023-06-06 11:23:58', '2023-06-19 18:46:11'),
+(6, 'comercial4@gmail.com', '$2a$10$wL9dY11bCDmu8Od4wyphyuNTdo597/vdlskroO0w0GLnaYv5CQ2QW', 0, '2023-06-06 11:24:25', '2023-06-19 18:46:46'),
+(7, 'juan.perez@gmail.com', '$2a$10$aRk6zX3IFSdSiE44XaVVVe5BTSYz3la5WK1vyz//7JQzWVj6M0ckC', 1, '2023-06-06 11:25:47', '2023-06-19 18:47:27'),
+(8, 'laura.gonzalez@gmail.com', '$2a$10$b02V3kMY3/Hy6v8vwjTFEuAg7sJdJ0mnq4ygcIq2n000euzsgOjBy', 1, '2023-06-06 11:25:53', '2023-06-19 18:47:55'),
+(9, 'carlos.martinez@gmail.com', '$2a$10$mPjgwDObr2/XxDJ5gkXEB.V2fMrOyhDNDxnUmj32i778Shb7Va.wi', 1, '2023-06-06 11:25:59', '2023-06-19 18:48:14'),
+(10, 'ana.rodriguez@gmail.com', '$2a$10$OU3X1qB6BALuEPuQoNjTUuACYrMkUjNaSqmJsVWa1P1380Xcua0Re', 1, '2023-06-06 11:26:25', '2023-06-19 18:48:32'),
+(11, 'david.lopez@gmail.com', '$2a$10$sOoeLSBiL/bCd96bMfrvx.bzJChCiphqDZvsGfJ933XmvIsp9WarO', 1, '2023-06-06 11:26:32', '2023-06-19 18:48:49'),
+(12, 'maria.garcia@gmail.com', '$2a$10$llKE4FD5UmwGXLKlEE2E5.KfEyQIqwgj3kLCwOIVYjGXt1MgW64q2', 1, '2023-06-06 11:26:41', '2023-06-19 18:49:10'),
+(13, 'javier.martinez@gmail.com', '$2a$10$jMXzcK1qn6OhFr/C9c2FW.HzQahHE8L/DJOQYCFvqFx6JKptquooe', 1, '2023-06-06 11:26:46', '2023-06-19 18:49:45'),
+(14, 'luisa.fernandez@gmail.com', '$2a$10$5RLVEo0GP9H9uY8X9m7z6uE4.aKre.dngaxEtY7.Gu59TXwe6QawG', 1, '2023-06-06 11:27:22', '2023-06-19 18:50:03'),
+(15, 'juan.garcia@gmail.com', '$2a$10$gNVKWBioYQmU7hfiOPimO.bTWLBOZwyOkkuXqLG1z76lM6DXnlMtm', 0, '2023-06-06 11:33:39', '2023-06-19 18:50:19'),
+(16, 'laura.lopez@gmail.com', '$2a$10$Am82JuscmfHsKhxQ8Uzk0O0ZATavQDANtn5R7k6JiQMh8s1tXj8Zi', 0, '2023-06-06 11:33:47', '2023-06-19 18:50:37'),
+(18, 'ana.fernandez@gmail.com', '$2a$10$9QM4fy9mH6oLS7E9fpgoPuMwfjlXvQISeBk0sGpTx3x3j6p6H5TFy', 0, '2023-06-06 11:34:42', '2023-06-19 18:50:58'),
+(19, 'pedro.gomez@gmail.com', '$2a$10$l12P7FoKCbZngGhFI4jZWeZkHKn7KhDn1q9WHY5sKmNaJbJh7JonK', 0, '2023-06-06 11:34:46', '2023-06-19 18:51:22'),
+(20, 'lucia.rodriguez@gmail.com', '$2a$10$nSqmK7Bb2FtaYueRk1BIM.dSfrMKvhGmunzeyxCxRUnF1JMtbo3u.', 0, '2023-06-06 11:34:52', '2023-06-19 18:51:38'),
+(21, 'daniel.lopez@gmail.com', '$2a$10$u5ROwU5jCy0Uac/aIUjePu8zfpkHWzQw28f3fodxUYLhbDS0s10SG', 0, '2023-06-06 11:35:00', '2023-06-19 18:51:55'),
+(22, 'laura.garcia@gmail.com', '$2a$10$x6F4kszNq9SwTffLlmaLo..9t56S82WU3McW9vjrPjSBI05DZB5ea', 0, '2023-06-06 11:35:08', '2023-06-19 18:52:18'),
+(23, 'carlos.sanchez@gmail.com', '$2a$10$ff7GCeA7zyjYIBGnhuZ3w.i7G.fM0Sxr.7cvWL.M1jDTBzMtmoPEO', 0, '2023-06-06 11:35:19', '2023-06-19 18:52:37'),
+(24, 'maria.gonzalez@gmail.com', '$2a$10$YhANj2yd2.s3WTL0ErYACeZA73zwDYnymJ5wLq.LNPOHXJJcLB64u', 0, '2023-06-06 11:35:26', '2023-06-19 18:52:56'),
+(25, 'javier.martin@gmail.com', '$2a$10$E6d/c3BxF9xjIyCBtes/NuR4HKAB233Xg/oXNCuOILB3jDPySNn3.', 0, '2023-06-06 11:35:31', '2023-06-19 18:53:14'),
+(27, 'lucia.lopez@gmail.com', '$2a$10$J02OvSIMA0C7clCj6HrEuunByYCtgJrClRbZli2mTz/S/VeAf8MX2', 0, '2023-06-06 11:35:40', '2023-06-19 18:53:39'),
 (28, 'juan.rodriguez@gmail.com', '$2a$10$yjZCWr07PTGN75JpDvLlY.Y.bOwgf3VGMDyiycgDlJd3cN2rkQpAS', 0, '2023-06-06 11:35:53', '2023-06-06 11:35:53'),
 (30, 'ana.perez@gmail.com', '$2a$10$1e2wH5xukD5ixQphakgkBOVAloNYT.r2FqwZOGxBCsv9Y/KE06HD.', 0, '2023-06-06 11:36:35', '2023-06-06 11:36:35'),
 (31, 'pedro.gonzalez@gmail.com', '$2a$10$aL8qCmUr7Wnbs8geYLl2y.tZqYbVtYVORCR6zkxj3J/yPvHtY0QBy', 0, '2023-06-06 11:36:40', '2023-06-06 11:36:40'),
@@ -926,7 +926,7 @@ ALTER TABLE `articulos`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `comercials`
@@ -968,7 +968,7 @@ ALTER TABLE `proveedors`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
