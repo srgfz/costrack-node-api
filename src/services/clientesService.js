@@ -1,31 +1,26 @@
-//Importamos el modelo de componente:
-const Cliente = require("../models/Cliente")
+const Cliente = require("../models/Cliente");
 const { Op } = require("sequelize");
-
 
 const getAll = async () => {
     try {
-        const all = await Cliente.findAll(
-        )
-        return all
+        const all = await Cliente.findAll();
+        return all;
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
-    }
-}
+};
 
 const getOne = async (id) => {
     try {
         return await Cliente.findOne({
             where: {
                 id: id,
-            }
-        })
+            },
+        });
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
-    }
-}
+};
 
 const getByName = async (searchInput) => {
     try {
@@ -42,18 +37,16 @@ const getByName = async (searchInput) => {
     }
 };
 
-
 const post = async (newItem) => {
     try {
         return await Cliente.create(newItem);
+    } catch (error) {
+        return error;
     }
-    catch (error) {
-        return error
-    }
-}
+};
 
 const put = async (newItem, id) => {
-    return await Cliente.update(newItem, { where: { id } })
+    return await Cliente.update(newItem, { where: { id } });
 };
 
 const patch = async (newItem, id) => {

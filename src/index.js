@@ -5,20 +5,20 @@ const app = express();
 
 const apiRoutesV1 = require("./routes/v1/apiRouter");
 
-//Improtamos la DB:
+// Importamos la base de datos (DB):
 const sequelize = require("./db/db");
-//Importamos las relaciones de la db:
+// Importamos las relaciones de la base de datos:
 require("./db/associations")
 
-//Importamos la documentación de swagger
+// Importamos la documentación de Swagger
 const { swaggerDocs: v1SwaggerDocs } = require("./routes/v1/swagger")
 
-// Conversión a json datos que nos envína para post, put, patch...
+// Convertir los datos que nos envían a formato JSON para los métodos POST, PUT, PATCH...
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(function (req, res, next) {
-    // specify CORS headers to send 
+    // Especificamos las cabeceras CORS a enviar
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Methods',
@@ -31,16 +31,16 @@ app.use(function (req, res, next) {
     next();
 });
 
-// conexión con mysql
+// Conexión con MySQL
 app.use("/costrack", apiRoutesV1);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor eschando en http://localhost:${PORT}`);
-    //Documentación Swagger
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+    // Documentación Swagger
     v1SwaggerDocs(app, PORT)
-    // conexión con mysql
+    // Conexión con MySQL
     sequelize
         .sync({ force: false })
-        .then(() => console.log("tablas sincronizadas"));
+        .then(() => console.log("Tablas sincronizadas"));
 });

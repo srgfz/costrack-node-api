@@ -1,3 +1,4 @@
+//*Configuración de la documentación Swagger
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
